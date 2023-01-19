@@ -1,0 +1,90 @@
+
+CHAPTER ONE
+-----------------------------------------------------------------------------
+Sub OutputExample()
+    Sheet1.Range("A2").Value = "GREETINGS, PLANET EARTH!"
+End Sub
+-----------------------------------------------------------------------------                                      
+Sub InputExample()
+    Dim v1 As Double, v2 As Integer, v3 As Currency, v4 As String
+    v1 = Range("A3").Value                'read data from spreadsheet into v1
+    v2 = v1                                     'assign the value of v1 to v2
+    v3 = v1                                                        'and to v3
+    v4 = v1                                                        'and to v4
+    Range("B3").Value = v2             'output the values in cells B3, C3, D3
+    Range("C3").Value = v3
+    Range("D3").Value = v4
+End Sub
+
+Sub CommandButton1_Click()                              'click to run program
+    Call InputExample
+End Sub                                           
+-----------------------------------------------------------------------------
+Sub CellAttributes()
+    Cells.RowHeight = 15                             'reset to standard value
+    Cells.ColumnWidth = 8.43                         'reset to standard value
+    Columns("A:C").ColumnWidth = 16                      'expand column width
+    Rows("2:3").RowHeight = 54                             'expand row height
+    Range("A2:C3").Font.Name = "Times New Roman"           'set the font type
+    Range("A2:C3").Font.FontStyle = "Bold"                     'set its style
+    Range("A2:C3").Font.Size = 30                                   'and size
+    Range("A2:C3").Font.Underline = True                  'underline the text
+    Range("A2:C3").Font.ColorIndex = 3                 'color the letters red
+    Range("A2:C3").Interior.ColorIndex = 6         'make cell interior yellow
+    Range("A2:C3").Borders.ColorIndex = 4                'outline cells green
+    Range("A2").Value = "GREETINGS,"                          'print the text
+    Range("A3").Value = "PLANET EARTH!"
+End Sub
+
+Sub CommandButton1_Click()                              'click to run program
+    Call CellAttributes
+End Sub                                           
+
+Sub CommandButton2_Click()                                    'click to clear
+    Range("A2:C3").ClearContents
+    Range("A2:C3").Interior.ColorIndex = 0                      'remove color
+    Range("A2:C3").Borders.LineStyle = xlLineStyleNone        'remove borders
+    Cells.RowHeight = 15                           'restore to standard value
+    Cells.ColumnWidth = 8.43                                           'ditto
+End Sub
+-----------------------------------------------------------------------------
+Sub CommandButton1_Click()                              'click to run program
+    Call SwitchIntegers
+End Sub       
+
+Sub SwitchIntegers()
+    Dim m As Integer, n As Integer
+    m = 3: n = 7
+    Call SwitchInt(m, n)
+    Range("A4").Value = m: Range("B4").Value = n 'prints 7,3: values switched
+    Call NoSwitchInt(m, n)
+    Range("A3").Value = m: Range("B3").Value = n 'prints 3,7:    not switched
+End Sub
+
+Sub SwitchInt(var1 As Integer, var2 As Integer)                'ByRef default
+    Dim temp As Integer
+    temp = var1: var1 = var2:  var2 = temp       'switch values of var1, var2
+End Sub
+
+Sub NoSwitchInt(ByVal var1 As Integer, ByVal var2 As Integer)
+    Dim temp As Integer
+    temp = var1: var1 = var2:  var2 = temp               'values not switched
+End Sub
+-----------------------------------------------------------------------------
+        '''''''''enter initial RGB color values in A4,B4,C4 ''''''''''
+Sub SpinButton1_Change() 'linked to A4, 0 - 255 in steps of 1
+    Dim i As integer, j As integer, k As Integer   
+    i = Range("A4").Value: j = Range("B4").Value: k = Range("C4").Value
+    Range("A5:C5").Interior.Color = RGB(i,j,k)               'print the color
+End Sub
+
+Sub SpinButton2_Change() 'linked to B4, 0 - 255 in steps of 1
+    Dim i As integer, j As integer, k As Integer
+    i = Range("A4").Value: j = Range("B4").Value: k = Range("C4").Value
+    Range("A5:C5").Interior.Color = RGB(i,j,k)
+End Sub
+Sub SpinButton3_Change() 'linked to C4, 0 - 255 in steps of 1
+    Dim i As integer, j As integer, k As Integer
+    i = Range("A4").Value: j = Range("B4").Value: k = Range("C4").Value
+    Range("A5:C5").Interior.Color = RGB(i,j,k)
+End Sub

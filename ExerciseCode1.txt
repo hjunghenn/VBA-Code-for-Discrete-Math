@@ -1,0 +1,40 @@
+
+CHAPTER ONE
+-----------------------------------------------------------------------------
+  ''''''''''' enter row,col coordinates in B3,B4 and in B5,B6 ''''''''''''
+Sub ElbowPath()
+    Dim r1 As Integer, r2 As Integer, c1 As Integer, c2 As Integer
+    'Cells.RowHeight = 15                      'reset to standard values
+    'Cells.ColumnWidth = 8.43    
+    r1 = Range("B3").Value: c1 = Range("B4").Value
+    r2 = Range("B5").Value: c2 = Range("B6").Value
+    Range(Cells(r1, c1), Cells(r1, c2)).Interior.ColorIndex = 3
+    Range(Cells(r1, c2), Cells(r2, c2)).Interior.ColorIndex = 3
+    MsgBox "clear"                              'pause then remove color
+    Range(Cells(r1, c1), Cells(r1, c2)).Interior.ColorIndex = xlNone
+    Range(Cells(r1, c2), Cells(r2, c2)).Interior.ColorIndex = xlNone
+End Sub
+
+Sub CommandButton1_Click()                              'click to run program
+    Call ElbowPath
+End Sub
+-----------------------------------------------------------------------------
+    ''''''''''''''' enter text, font, and color in B4,B5,B6 ''''''''''''''
+Sub FontColorText()  
+    Dim text As String, color As Integer, font As String
+    text = Range("B3").Value
+    font = Range("B4").Value
+    color = Range("B5").Value
+    Rows("2:2").RowHeight = 54                                    'expand rows
+    Range("A2").Value = text                                   'read user text
+    With Range("A2").font
+         .Name = font
+         .FontStyle = "Bold"
+         .Size = 38
+         .ColorIndex = color
+    End With
+End Sub
+
+Private Sub CommandButton1_Click()
+Call FontColorText
+End Sub
